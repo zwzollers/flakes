@@ -3,13 +3,10 @@
 
   outputs = { self, ... }: {
     templates = {
-
-      python-script = {
-        path = ./templates/python-script;
-        description = "A simple Python program script.";
+      vhdl = {
+        path = ./templates/vhdl;
+        description = "a simple vhdl enviroment";
       };
-
-      defaultTemplate = self.templates.trivial;
     };
   };
 }
