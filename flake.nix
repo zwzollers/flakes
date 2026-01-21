@@ -3,7 +3,7 @@
 
   outputs = { self, ... }: {
     templates = {
-      vhdl = {
+      fpga = {
         path = ./templates/fpga;
         description = "a simple vhdl enviroment";
       };
