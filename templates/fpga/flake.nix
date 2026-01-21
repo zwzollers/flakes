@@ -1,5 +1,5 @@
 {
-  description = "VHDL dev shell";
+  description = "FPGA dev shell";
   
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -17,12 +17,11 @@
           buildInputs = [
             pkgs.ghdl
             pkgs.gtkwave
+            pkgs.fusesoc
+            pkgs.ghdl
+            pkgs.quartus-prime-lite
+            pkgs.gtkwave
           ];
-          
-          shellHook = ''
-            ghdl --version;
-            gtkwave --version;
-          '';
         };
   };
 }

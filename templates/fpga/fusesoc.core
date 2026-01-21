@@ -1,0 +1,84 @@
+CAPI=2:
+name: 
+description: 
+
+filesets:
+  rtl:
+    files:
+      [] 
+
+  tb:
+    files:
+      []
+     
+  scripts:
+    files:
+      [scripts/gtkwave.py: {file_type: user, copyto: gtkwave.py}]
+
+targets:
+  default: &default
+    filesets:
+      [rtl]
+    filters: [autotype]
+    toplevel:
+    parameters:
+      []
+
+  sim_iverilog:
+    <<: *default
+    description: Simulate the design using IVerilog simulator
+    default_tool: iverilog
+    filesets_append:
+      [tb]
+    toplevel: 
+    tools:
+      iverilog:
+        iverilog_options:
+          [-g2012]
+      
+  sim_iverilog_wave:
+    <<: *sim_iverilog
+    description: Simulate the design using IVerilog simulator and then launch GTKWave
+    hooks:
+      post_run:
+        [gtkwave]
+        
+  sim_ghdl:
+    <<: *default
+    description: Simulate the design using GHDL simulator
+    default_tool: ghdl
+    filesets_append:
+      [tb]
+    toplevel: 
+    tools:
+      ghdl:
+        run_options:
+          [--vcd=wave.vcd]
+    
+  sim_ghdl_wave:
+    <<: *sim_ghdl
+    description: Simulate the design using GHDL simulator and then launch GTKWave
+    hooks:
+      post_run:
+        [gtkwave]
+
+  synth_de1SoC:
+    <<: *default
+    description: Synthesize the design for de1-SoC board
+    default_tool: quartus
+    filesets_append: 
+      [de1SoC]
+    tools:
+      quartus:
+        family: "Cyclone V"
+        device: "5CSEMA5F31C6"
+
+parameters:
+  template:
+    datatype    : bool / file / int / real / str
+    description : 
+    paramtype   : vlogparam / cmdlinearg / generic / plusarg / vlogdefine
+
+scripts:
+  gtkwave:
+    cmd: [python3, gtkwave.py, wave.vcd]
