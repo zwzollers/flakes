@@ -2,7 +2,7 @@
   description = "FPGA dev shell";
   
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-25.11";
   };
   
   outputs = {self, nixpkgs}:
