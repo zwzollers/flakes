@@ -19,7 +19,6 @@
             pkgs.gtkwave
             pkgs.fusesoc
             pkgs.ghdl
-            pkgs.quartus-prime-lite
             pkgs.gtkwave
           ];
         };
