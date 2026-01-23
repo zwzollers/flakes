@@ -25,6 +25,7 @@
           shellHook = ''
             mkdir tb;
             mkdir rtl;
+            fusesoc library add .;
           '';
         };
   };

@@ -20,7 +20,6 @@ targets:
   default: &default
     filesets: [rtl]
     filters: [autotype]
-    toplevel:
 
 #############################################
 #                SIMULATION                 #
@@ -65,8 +64,12 @@ targets:
 #                SYNTHESIS                  #
 #############################################
 
+  synth: &synth
+    <<: *defualt
+    toplevel: 
+
   synth_de1SoC:
-    <<: *default
+    <<: *synth
     description: Synthesize the design for de1-SoC board
     default_tool: quartus
     filesets_append: 
